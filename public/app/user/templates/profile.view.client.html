@@ -1,0 +1,45 @@
+<div class="view-container profile-page">
+
+<!--
+    <nav class="navbar fixed-top navbar-light bg-light">
+        <a class="navbar-brand" href="#/user/{{model.userID}}">Hello {{model.user.username}}!</a>
+    </nav>
+-->
+
+    <div class="container-fluid">
+        <form name="loginForm" class="form-signin">
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username"
+                       ng-model="model.user.username" disabled>
+            </div>
+            <div class="form-group">
+                <label for="first_name">First Name</label>
+                <input type="text" class="form-control" id="first_name"
+                       ng-model="model.user.firstName" disabled>
+            </div>
+            <div class="form-group">
+                <label for="last_name">Last Name</label>
+                <input type="text" class="form-control" id="last_name"
+                       ng-model="model.user.lastName" disabled>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" class="form-control" id="email"
+                       ng-model="model.user.email" disabled>
+            </div>
+
+            <div class="row text-center button-group">
+                <div class="col-sm-12">
+                    <a class="btn btn-block btn-danger btn-bg" ng-click="model.logout()">
+                        Logout
+                    </a>
+                </div>
+            </div>
+            <br>
+
+        </form>
+    </div>
+</div>
+

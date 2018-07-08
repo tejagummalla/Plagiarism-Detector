@@ -1,0 +1,28 @@
+<section class="download bg-primary text-center" id="download">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <h2 class="section-heading">Plagiarism Detector Application</h2>
+<!--                <p>I don't know who you are. But I know what you want.
+                    If you are looking to copy, I can tell you you're in trouble.
+                    If you are honest, that'll be the end of it. I will not look for you, I will not pursue you.
+                    But if you don't, I will look for you, I will find you, and I will punish you.</p>-->
+                <p class="text-center">C language Source Code Plagiarism Detection at its very best!</p>
+                <div class="badges">
+                    <a class="btn btn-lg btn-success badge-link" ng-show="!model.user"
+                       ui-sref="app.login">
+                        Login
+                    </a>
+                    <a class="btn btn-lg btn-primary badge-link" ng-show="!model.user"
+                       ui-sref="app.register">
+                        Register
+                    </a>
+                    <a class="btn btn-lg btn-primary badge-link" ng-show="model.user"
+                       ui-sref="app.code-compare({uid: model.userID})">
+                        Check Plagiarism!
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

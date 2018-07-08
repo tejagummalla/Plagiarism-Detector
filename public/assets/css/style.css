@@ -1,0 +1,304 @@
+html,
+body {
+    height: 100%;
+}
+
+.pad {
+    padding: 50px;
+}
+
+.pad.h3 {
+    color: black;
+}
+
+body {
+    /* background-color: #f5f5f5; */
+    position: relative;
+}
+
+div.back {
+    background: url('../img/mean.jpg');
+    min-height: 100%
+}
+
+body::after {
+    content: "";
+    /*
+    background: url('../img/1556.jpg') no-repeat center center fixed;
+    */
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.form-signin {
+    width: 100%;
+    max-width: 640px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-signin .checkbox {
+    font-weight: 400;
+}
+
+.form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+
+.form-check {
+    line-height: 20px;
+    vertical-align: middle;
+}
+
+.form-check-label {
+    font-size: 14px;
+}
+
+.pic {
+    height: 75px;
+    width: 75px;
+    text-align: center;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.error {
+    color: red;
+    margin-bottom: 10px;
+}
+
+form.ng-submitted .ng-dirty.ng-invalid {
+    border: 2px solid red;
+}
+
+.button-group .col-sm-4 {
+    margin-bottom: 16px;
+}
+
+.thumb {
+    width: 24px;
+    height: 24px;
+    float: none;
+    position: relative;
+    top: 7px;
+}
+
+form .progress {
+    line-height: 15px;
+}
+
+.progress {
+    display: inline-block;
+    width: 100px;
+    border: 3px groove #CCC;
+}
+
+.progress div {
+    font-size: smaller;
+    background: orange;
+    width: 0;
+}
+
+.comp-page {
+    margin: 20px auto;
+    max-width: 960px;
+}
+
+.button-group div {
+    margin-bottom: 8px;
+}
+
+/* Important part */
+.modal-dialog {
+    overflow-y: initial !important
+}
+
+.modal-body {
+    height: 400px;
+    overflow-y: auto;
+}
+
+.btn-switch {
+    position: relative;
+    display: block;
+    width: 50px;
+    height: 25px;
+    cursor: pointer;
+    background-color: #F27878;
+    border: 2px solid #F27878;
+    border-radius: 40px;
+    margin: auto;
+}
+
+.btn-switch-circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    height: 21px;
+    width: 21px;
+    background-color: #fff;
+    border-radius: 40px;
+}
+
+.btn-switch--on {
+    background-color: #80CDBE;
+    border: 2px solid #80CDBE;
+}
+
+.btn-switch-circle--on {
+    left: auto;
+    right: 0;
+}
+
+/* Custom */
+
+body, html {
+    width: 100%;
+    height: 100%
+}
+
+body {
+    font-family: Muli, Helvetica, Arial, sans-serif
+}
+
+hr {
+    max-width: 100px;
+    margin: 25px auto 0;
+    border: 1px rgba(34, 34, 34, .1);
+}
+
+hr.light {
+    border-color: #fff
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Catamaran, Helvetica, Arial, sans-serif;
+    font-weight: 200;
+    letter-spacing: 1px
+}
+
+p {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 20px
+}
+
+section {
+    padding: 100px 0
+}
+
+section h2 {
+    font-size: 50px
+}
+
+section.download {
+    position: relative;
+    padding: 150px 0
+}
+
+section.download h2 {
+    font-size: 50px;
+    margin-top: 0
+}
+
+section.download .badges .badge-link {
+    display: block;
+    margin-bottom: 25px
+}
+
+section.download .badges .badge-link:last-child {
+    margin-bottom: 0
+}
+
+section.download .badges .badge-link img {
+    height: 60px
+}
+
+@media (min-width: 768px) {
+    section.download .badges .badge-link {
+        display: inline-block;
+        margin-bottom: 0
+    }
+}
+
+@media (min-width: 768px) {
+    section.download h2 {
+        font-size: 70px
+    }
+}
+
+.bg-primary {
+    background: #fff !important;
+}
+
+.text-primary {
+    color: #fdcc52
+}
+
+.no-gutter > [class*=col-] {
+    padding-right: 0;
+    padding-left: 0
+}
+
+form[name="loginForm"] {
+    max-width: 320px;
+}
+
+form[name="registerForm"] {
+    max-width: 640px;
+}
+
+form[name="profileForm"] {
+    max-width: 320px;
+}
+
+.view-container {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background-color: #f5f5f5;
+}
+
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.statistics-page, .dashboard-page {
+    margin-top: 60px;
+}
+
+footer {
+    color: rgba(255, 255, 255, .5)
+}

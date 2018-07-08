@@ -1,0 +1,25 @@
+<div class="view-container compare-page">
+    <div class="container-fluid">
+        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h2 class="display-4">Code Comparison</h2>
+            <p class="lead text-center">Compare your code!</p>
+        </div>
+
+        <div class="container-fluid">
+
+            <uib-tabset active="activeJustified" justified="true">
+                <uib-tab
+                        ng-repeat="t in model.tabs"
+                        heading="{{t.heading}}"
+                        select="model.go(t.route)"
+                        active="t.active"
+                        index="$index">
+                </uib-tab>
+            </uib-tabset>
+
+            <div ui-view></div>
+
+        </div>
+    </div>
+</div>
+

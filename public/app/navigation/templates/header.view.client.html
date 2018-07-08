@@ -1,0 +1,58 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" ui-sref="app.home">Plagiarism Detector</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" ng-show="user">
+                <a class="nav-link" ng-show="user && currentRoute.indexOf('compare') == -1"
+                   ui-sref="app.code-compare.multi({uid: user.id})">
+                    Check Plagiarism!
+                </a>
+            </li>
+            <li class="nav-item" ng-show="user">
+                <a class="nav-link" ng-show="user && user.isAdmin"
+                   ui-sref="app.health">
+                    System Health
+                </a>
+            </li>
+            <li class="nav-item" ng-show="user">
+                <a class="nav-link" ng-show="user && user.isAdmin"
+                   ui-sref="app.statistics">
+                    Statistics
+                </a>
+            </li>
+            <li class="nav-item" ng-show="user">
+                <a class="nav-link" ng-show="user && user.isAdmin"
+                   ui-sref="app.dashboard">
+                    Dashboard
+                </a>
+            </li>
+        </ul>
+
+        <div class="form-inline my-2 my-lg-0">
+            <a class="btn btn-outline-success my-2 my-sm-0 mr-2"
+               ng-show="user"
+               ui-sref="app.user({uid: user.id})">
+                Profile
+            </a>
+            <button class="btn btn-outline-danger my-2 my-sm-0 mr-2"
+                    ng-show="user"
+                    ng-click="model.logout()">
+                Logout
+            </button>
+            <a class="btn btn-outline-success my-2 my-sm-0 mr-2" ng-show="!user"
+               ui-sref="app.login">
+                Login
+            </a>
+            <a class="btn btn-outline-danger my-2 my-sm-0 mr-2" ng-show="!user"
+               ui-sref="app.register">
+                Register
+            </a>
+        </div>
+    </div>
+</nav>

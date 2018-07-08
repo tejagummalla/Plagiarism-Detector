@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<!--
+  ~ Copyright (c) 2018. Team-108 Inc. All Rights Reserved.
+  ~
+  ~  Licensed under the Apache License, Version 2.0 (the "License"); you may not
+  ~  use this file except in compliance with the License.  You may obtain a copy
+  ~  of the License at
+  ~
+  ~  http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  ~  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
+  ~  License for the specific language governing permissions and limitations under
+  ~  the License.
+  -->
+
+<div class="comp-page folder-compare modal-demo">
+    <h2 class="text-center ligh">Folder Comparator
+        <a ng-click="model.displayInfo()">
+            <i class="fas fa-info-circle"></i>
+        </a>
+    </h2>
+
+    <div class="row" ng-show="model.showInfo1">
+        <h4 class="text-center ligh">
+            Select one folder each for either students, with each folder
+            containing all the required C files for each user to be checked.
+        </h4>
+        <br>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="row mb-2">
+        <div class="col-md-6">
+            <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                <div class="card-body d-flex flex-column align-items-start">
+                    <strong class="d-inline-block mb-2 text-primary">Student 1</strong>
+                </div>
+                <button class="btn btn-default btn-lg" msl-folder-input="fileSelectionHandler1"
+                        uib-tooltip="Available only on HTML5 Compatible browsers" tooltip-placement="right">
+                    <i class="fas fa-folder-open"></i>
+                    Select folder
+                </button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                <div class="card-body d-flex flex-column align-items-start">
+                    <strong class="d-inline-block mb-2 text-success">Student 2</strong>
+                </div>
+                <button class="btn btn-default btn-lg" msl-folder-input="fileSelectionHandler2"
+                        uib-tooltip="Available only on HTML5 Compatible browsers" tooltip-placement="right">
+                    <i class="fas fa-folder-open"></i>
+                    Select folder
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row vertical-margin"></div>
+
+    <h5 class="text-center ligh">Toggle switch to customize the comparison parameters.</h5>
+
+    <div class="btn-switch" ng-class="{'btn-switch--on':model.toggle.switch}"
+         ng-model="model.toggle.switch" ng-click="model.toggle.switch = !model.toggle.switch"
+         uib-tooltip="Customize?" tooltip-placement="right">
+        <div class="btn-switch-circle"
+             ng-class="{'btn-switch-circle--on':model.toggle.switch}"
+             ng-model="model.toggle.switch" ng-click="model.toggle.switch = !model.toggle.switch">
+        </div>
+    </div>
+
+    <div class="row vertical-margin"></div>
+
+
+    <div class="form-group" ng-if="model.toggle.switch">
+        <label>Select a Comparison Strategy:
+            <a ng-click="model.displayInfo2()">
+                <i class="fas fa-info-circle"></i>
+            </a>
+        </label>
+        <div ng-show="model.showInfo2">
+            <p>Copied line highlighting only available for LCS and NW algorithms.</p>
+        </div>
+        <div class="custom-control custom-radio">
+            <input type="radio" id="lcs" name="customRadio" class="custom-control-input"
+                   value="LCS" ng-model="model.compStrategy" ng-change='model.showSlider()'>
+            <label class="custom-control-label" for="lcs">Longest Common Subsequence (LCS) Based</label>
+        </div>
+        <div class="custom-control custom-radio">
+            <input type="radio" id="nw" name="customRadio" class="custom-control-input"
+                   value="NW" ng-model="model.compStrategy" ng-change='model.showSlider()'>
+            <label class="custom-control-label" for="nw">Needleman Wulsh (NW) Based</label>
+        </div>
+        <div class="custom-control custom-radio">
+            <input type="radio" id="weighted" name="customRadio" class="custom-control-input"
+                   value="WEIGHTED" ng-model="model.compStrategy" ng-change='model.showSlider()'>
+            <label class="custom-control-label" for="weighted">Weighted Polynomial</label>
+        </div>
+        <div class="custom-control custom-radio">
+            <input type="radio" id="moss-trained" name="customRadio" class="custom-control-input"
+                   value="MOSS_TRAINED" ng-model="model.compStrategy" ng-change='model.showSlider()'>
+            <label class="custom-control-label" for="moss-trained">Moss Trained</label>
+        </div>
+
+        <div class="row vertical-margin"></div>
+
+        <div ng-show="model.sliderVisible">
+            <rzslider rz-slider-model="slider.value"
+                      rz-slider-options="slider.options">
+            </rzslider>
+        </div>
+    </div>
+
+
+    <div class="row vertical-margin"></div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default" ng-show="model.uploads1.length > 0">
+                <h3 class="panel-heading btn" ng-click="isCollapsed1 = !isCollapsed1">
+                    <i class="fas fa-list"></i>
+                    Selected Files
+                </h3>
+                <div uib-collapse="isCollapsed1" class="mb-3">
+
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Size</th>
+                                <th class="upload-status"></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="file in model.uploads1">
+                                <td>{{file.file.webkitRelativePath}}</td>
+                                <td>{{file.file.size/1000}} KB</td>
+                                <td>
+                                    <div class="alert alert-info"
+                                         ng-show="model.uploadStartRequestedFor($index, model.uploads1) && !model.uploadStartedFor($index, model.uploads1)">
+                                        <i class="fas fa-hourglass-start"></i>
+                                        Upload starting...
+                                    </div>
+                                    <progressbar class="progress-striped"
+                                                 ng-class="model.uploadRunningFor($index, model.uploads1) ? 'active' : ''"
+                                                 ng-show="model.uploadRunningFor($index, model.uploads1)"
+                                                 value="model.completionFor($index, model.uploads1)">
+                                        {{model.completionFor($index, model.uploads1)}}%
+                                    </progressbar>
+                                    <div class="alert alert-danger" ng-show="!file.isValid"><i
+                                            class="fas fa-thumbs-down"></i> Won't be uploaded :(.
+                                        {{file.reason}}.
+                                    </div>
+                                    <div class="alert alert-success"
+                                         ng-show="model.uploadCompletedFor($index, model.uploads1)">
+                                        <i class="fas fa-thumbs-up"></i> Upload completed :)
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <button class="btn btn-danger"
+                                            ng-click="model.cancelUploadFor($index, model.uploads1)">
+                                        <i class="fas fa-trash-alt"></i> Cancel
+                                    </button>
+                                </td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-group" ng-show="model.uploads1.length > 0">
+                <button class="btn btn-primary btn-lg" ng-click="model.startAll(model.uploads1)"
+                        ng-disabled="!model.anyStartable(model.uploads1)">
+                    <i class="fas fa-play"></i> Start Upload
+                </button>
+                <button class="btn btn-danger btn-lg" ng-click="model.cancelAll(1)"><i class="fas fa-trash-alt"></i>
+                    Cancel Upload
+                </button>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-default" ng-show="model.uploads2.length > 0">
+                <h3 class="panel-heading btn" ng-click="isCollapsed2 = !isCollapsed2">
+                    <i class="fas fa-list"></i>
+                    Selected Files
+                </h3>
+                <div uib-collapse="isCollapsed2" class="mb-3">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Size</th>
+                                <th class="upload-status"></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="file in model.uploads2">
+                                <td>{{file.file.webkitRelativePath}}</td>
+                                <td>{{file.file.size/1000}} KB</td>
+                                <td>
+                                    <div class="alert alert-info"
+                                         ng-show="model.uploadStartRequestedFor($index, model.uploads2) && !model.uploadStartedFor($index, model.uploads2)">
+                                        <i class="fas fa-hourglass-start"></i>
+                                        Upload starting...
+                                    </div>
+                                    <progressbar class="progress-striped"
+                                                 ng-class="model.uploadRunningFor($index, model.uploads2) ? 'active' : ''"
+                                                 ng-show="model.uploadRunningFor($index, model.uploads2)"
+                                                 value="model.completionFor($index, model.uploads2)">
+                                        {{model.completionFor($index, model.uploads2)}}%
+                                    </progressbar>
+                                    <div class="alert alert-danger" ng-show="!file.isValid">
+                                        <i class="fas fa-thumbs-down"></i> Won't be uploaded :(.
+                                        {{file.reason}}.
+                                    </div>
+                                    <div class="alert alert-success"
+                                         ng-show="model.uploadCompletedFor($index, model.uploads2)">
+                                        <i class="fas fa-thumbs-up"></i> Upload completed :)
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <button class="btn btn-danger"
+                                            ng-click="model.cancelUploadFor($index, model.uploads2)">
+                                        <i class="fas fa-trash-alt"></i> Cancel
+                                    </button>
+                                </td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-group" ng-show="model.uploads2.length > 0">
+                <button class="btn btn-primary btn-lg" ng-click="model.startAll(model.uploads2)"
+                        ng-disabled="!model.anyStartable(model.uploads2)">
+                    <i class="fas fa-play"></i> Start Upload
+                </button>
+                <button class="btn btn-danger btn-lg" ng-click="model.cancelAll(2)">
+                    <i class="fas fa-trash-alt"></i> Cancel Upload
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row vertical-margin"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div ng-show="model.error" class="alert alert-danger" role="alert">
+                {{model.error}}
+            </div>
+        </div>
+    </div>
+
+    <div class="row vertical-margin"></div>
+
+    <div class="text-center">
+        <button ng-disabled="model.result" type="button" class="btn btn-lg btn-primary"
+                ng-click="model.submit()">Run Compare
+        </button>
+    </div>
+
+    <div class="row vertical-margin"></div>
+
+    <div class="row table-responsive-md" ng-if="model.result">
+        <h4>Output:</h4>
+        <table class="table">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Repo 1</th>
+                <th scope="col">Repo 2</th>
+                <th scope="col" ng-if="model.lcs">LC Similarity % Match</th>
+                <th scope="col" ng-if="model.lcs">Show Diff</th>
+                <th scope="col" ng-if="model.nw">Needleman Wulsch % Match</th>
+                <th scope="col" ng-if="model.nw">Show Diff</th>
+                <th scope="col" ng-if="model.weighted">Weighted Polynomial% Match</th>
+                <th scope="col" ng-if="model.moss">Moss Trained % Match</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="i in model.rows" ng-class="{'table-danger': f.matchPercentage > 70}">
+                <th scope="row">{{$index + 1}}</th>
+                <td>{{i.student1Identifier}}</td>
+                <td>{{i.student2Identifier}}</td>
+                <td ng-if="model.lcs">{{model.lcs[$index].matchPercentage | number : 2}}</td>
+                <td ng-if="model.lcs">
+                    <button type="button" class="btn btn-primary"
+                            ng-click="model.open('lg', i.student1Identifier,i.student2Identifier,'LCS', model)">
+                        Show Diff
+                    </button>
+                </td>
+                <td ng-if="model.nw">{{model.nw[$index].matchPercentage | number : 2}}</td>
+                <td ng-if="model.nw">
+                    <button type="button" class="btn btn-primary"
+                            ng-click="model.open('lg', i.student1Identifier,i.student2Identifier,'NW', model)">
+                        Show Diff
+                    </button>
+                </td>
+                <td ng-if="model.weighted">{{model.weighted[$index].matchPercentage | number : 2}}</td>
+                <td ng-if="model.moss">{{model.moss[$index].matchPercentage | number : 2}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">{{ model.strategy }} Diff</h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <div class="code-diff-page container-fluid" ng-if="model.doc1">
+                <div class="row">
+                    <div class="col-md-6">
+                        <pre data-line="{{model.doc1Lines}}" class="line-numbers">
+                            <code prism class="language-c">
+                                {{model.doc1}}
+                            </code>
+                        </pre>
+                    </div>
+
+                    <div class="col-md-6">
+                        <pre data-line="{{model.doc2Lines}}" class="line-numbers">
+                            <code prism class="language-c">
+                                {{model.doc2}}
+                            </code>
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" type="button" ng-click="model.cancel()">Cancel</button>
+        </div>
+    </script>
+
+    <div class="modal-parent">
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="container-fluid">
+    <nav class="navbar navbar-default navbar-fixed-top" style="background-color: black;">
+        <div class="container-fluid col-xs ">
+            <div class="navbar-header m">
+                <a class="navbar-brand">
+                    <b>PROFILE</b>
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="container-fluid pad">
+    <form class="form-signin">
+
+        <div class="form-group lig">
+            <h3>Hello {{model.user.username}}!</h3>
+        </div>
+
+        <div class="form-group">
+            <label for="username" class="lig">Username</label>
+            <input type="text" class="form-control" id="username"
+                   value={{model.user.username}} disabled>
+        </div>
+        <div class="form-group">
+            <label for="first_name" class="lig">First Name</label>
+            <input type="text" class="form-control" id="first_name"
+                   value={{model.user.firstName}} disabled>
+        </div>
+        <div class="form-group">
+            <label for="last_name" class="lig">Last Name</label>
+            <input type="text" class="form-control" id="last_name"
+                   value={{model.user.lastName}} disabled>
+        </div>
+        <div class="form-group">
+            <label for="email" class="lig">Email Address</label>
+            <input type="email" class="form-control" id="email" value={{model.user.emailAddress}} disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="huskyId" class="lig">Husky Id</label>
+            <input type="text" class="form-control" id="huskyId" value={{model.user.huskyId}} disabled>
+        </div>
+
+
+        <div class="row text-center button-group">
+            <div class="col-sm-12">
+                <a class="btn btn-block btn-primary btn-bg" ui-sref="code-compare({uid: model.userID})">
+                    Check Plagiarism!
+                </a>
+            </div>
+            <div class="col-sm-12" ng-show="model.dashboard">
+                <a class="btn btn-block btn-success btn-bg" ui-sref="dashboard">
+                    Dashboard
+                </a>
+            </div>
+            <div class="col-sm-12" ng-show="model.dashboard">
+                <a class="btn btn-block btn-info btn-bg" ui-sref="statistics">
+                    View Statistics
+                </a>
+            </div>
+            <div class="col-sm-12" ng-show="model.dashboard">
+                <a class="btn btn-block btn-warning btn-bg" ui-sref="health">
+                    System Health
+                </a>
+            </div>
+            <div class="col-sm-12">
+                <a class="btn btn-block btn-danger btn-bg" ng-click="model.logout()">
+                    Logout
+                </a>
+            </div>
+        </div>
+        <br>
+
+    </form>
+</div>
+

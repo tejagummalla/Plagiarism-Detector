@@ -1,0 +1,38 @@
+<div class="view-container dashboard-page">
+    <div class="container">
+        <div class="row table-responsive-md">
+            <h3>Users</h3>
+
+            <div ng-show="model.message" class="alert alert-success" role="alert">
+                {{model.message}}
+            </div>
+
+            <div ng-show="model.error" class="alert alert-danger" role="alert">
+                {{model.error}}
+            </div>
+
+            <table class="table table-hover table-bordered table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">User Id</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="i in model.users">
+                    <td>{{i.id}}</td>
+                    <td>{{i.username}}</td>
+                    <td>{{i.firstName}}</td>
+                    <td>
+                        <button class="btn btn-danger" ng-click="model.deleteUser(i.id, $index)">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

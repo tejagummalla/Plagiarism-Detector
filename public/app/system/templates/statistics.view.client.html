@@ -1,0 +1,25 @@
+<div class="view-container statistics-page">
+    <div class="container">
+        <div class="row table-responsive-md ligh">
+            <h2 class="text-center">Usage Statistics</h2>
+            <table class="table table-hover table-bordered table-dark">
+                <thead>
+                <tr>
+                    <th scope="col" class="ligh">Report ID</th>
+                    <th scope="col" class="ligh">User ID</th>
+                    <th scope="col" class="ligh">Running Time (s)</th>
+                    <th scope="col" class="ligh">Timestamp</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="i in model.statsList">
+                    <td class="ligh">{{i.id}}</td>
+                    <td class="ligh">{{i.userID}}</td>
+                    <td class="ligh">{{i.runningTime/1000000000 | number}}</td>
+                    <td class="ligh">{{i.createdDate | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

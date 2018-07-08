@@ -1,0 +1,33 @@
+<div class="view-container health-page">
+    <div class="container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>System Component</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Application Health Check</td>
+                <td>{{model.health.healthCheckService.status}}</td>
+            </tr>
+            <tr>
+                <td>Mail Health Check</td>
+                <td>{{model.health.mail.status}}</td>
+            </tr>
+            <tr>
+                <td>Disk Space</td>
+                <td>
+                    Available ({{model.health.diskSpace.details.free * 100/model.health.diskSpace.details.total | number
+                    }})%
+                </td>
+            </tr>
+            <tr>
+                <td>Database Health Check</td>
+                <td>{{model.health.db.status}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,89 @@
+<div class="view-container register-page">
+    <div class="container-fluid">
+        <form name="registerForm" class="form-signin" novalidate>
+            <div class="text-center">
+                <img class="mg-rounded mb-4 pic" src="../../../assets/img/neu.jpg" alt="" width="72" height="72">
+            </div>
+            <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+            <div class="row">
+                <div class="form-group col-sm">
+                    <label for="username" class="sr-only">Username</label>
+                    <input ng-model="user.username" type="text"
+                           class="form-control" id="username" name="username"
+                           placeholder="Username" required/>
+                    <div ng-show="registerForm.$submitted && registerForm.username.$invalid"
+                         class="error">Username is required
+                    </div>
+                </div>
+                <div class="form-group col-sm">
+                    <label for="email" class="sr-only">Email</label>
+                    <input ng-model="user.email" type="email"
+                           class="form-control" id="email" name="email"
+                           placeholder="Email"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm">
+                    <label for="password" class="sr-only">Password</label>
+                    <input ng-model="user.password" type="password"
+                           class="form-control" id="password" name="password"
+                           placeholder="Password" required/>
+                    <div ng-show="registerForm.$submitted && registerForm.password.$invalid"
+                         class="error">Password is required
+                    </div>
+                </div>
+                <div class="form-group col-sm">
+                    <label for="conf-password" class="sr-only">Confirm Password</label>
+                    <input ng-model="user.confPassword" type="password" class="form-control" id="conf-password"
+                           name="conf-password" placeholder="Confirm Password" required/>
+                    <div ng-show="registerForm.$submitted && registerForm['conf-password'].$invalid"
+                         class="error">Conf. password is required
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-sm">
+                    <label for="first-name" class="sr-only">First Name</label>
+                    <input ng-model="user.firstName" type="text"
+                           class="form-control" id="first-name" name="first-name"
+                           placeholder="First Name"/>
+                </div>
+                <div class="form-group col-sm">
+                    <label for="last-name" class="sr-only">Last Name</label>
+                    <input ng-model="user.lastName" type="text"
+                           class="form-control" id="last-name" name="last-name"
+                           placeholder="Last Name"/>
+                </div>
+            </div>
+
+            <div ng-show="model.error" class="alert alert-danger" role="alert">
+                {{model.error}}
+            </div>
+
+            <div ng-show="registerForm.$submitted && registerForm.password.$valid
+            && registerForm['conf-password'].$valid &&
+            (user.password !== user.confPassword)"
+                 class="alert alert-danger" role="alert">
+                Password and Conf. Password are different!
+            </div>
+
+            <div class="row">
+                <div class="col-sm mb-2">
+                    <button type="submit" class="btn btn-block btn-primary"
+                            ng-click="registerForm.$valid && model.register(user)">
+                        Register
+                    </button>
+                </div>
+                <div class="col-sm mb-2">
+                    <a class="btn btn-block btn-danger" ui-sref="app.login">
+                        Cancel
+                    </a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+</div>

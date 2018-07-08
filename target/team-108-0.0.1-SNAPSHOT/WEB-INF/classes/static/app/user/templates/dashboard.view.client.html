@@ -1,0 +1,29 @@
+<div class="row table-responsive-md ligh">
+    <h3>System Users</h3>
+    <h4 ng-if = "model.message">{{model.message}}</h4>
+
+    <small ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+    </small>
+
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">User Id</th>
+            <th scope="col">Username</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="i in model.users" >
+            <td>{{i.id}}</td>
+            <td>{{i.username}}</td>
+            <td>{{i.firstName}}</td>
+            <td><button class="btn btn-danger" ng-click = "model.deleteUser(i)">
+                Delete
+            </button> </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
